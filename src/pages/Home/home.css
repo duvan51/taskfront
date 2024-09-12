@@ -1,0 +1,4 @@
+.OneBanner{
+    display:grid;
+    grid-template-columns: 40% 50%;
+}

@@ -1,0 +1,75 @@
+html, body {
+  margin: 0;
+  height: 100%; /* Asegura que el html y el body ocupen toda la altura del viewport */
+  
+}
+
+
+
+:root{
+  --gradient-background: rgb(81,112,255);
+  --gradient-background: linear-gradient(90deg, rgba(81,112,255,1) 10%, rgba(255,102,196,1) 81%);
+}
+
+/** --aqui son las variables generales */
+.black{
+  border: 1px solid black;
+}
+.background{
+  background: rgb(81,112,255);
+  background: linear-gradient(90deg, rgb(53, 81, 203) 10%, rgb(242, 24, 159) 81%);
+}
+
+.backgroundCristal{
+  background-color: rgba(255, 255, 255, 0.28);
+}
+
+.card{
+  width: 120px;
+  height: 150px;
+  border-radius: 0.375rem;
+  background-color: #502CB6;
+  padding: 8px;
+}
+
+.cardBig{
+  border-radius: 0.375rem;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  padding: 8px;
+}
+
+
+/** --hovers generales */
+
+.cardHover:hover{
+  background-color: rgba(255, 255, 255, 0.101);
+  cursor: pointer;
+}
+
+
+
+
+
+.page-with-sidebar{
+
+  display: grid;
+  grid-template-columns: 20% 1fr; /* Ajusta según el ancho del sidebar */
+  grid-template-rows: auto;
+  height: 100%;
+  font-size: 16px;
+
+}
+
+.page-with-sidebar>div:first-child{
+  background-color: rgba(255, 255, 255, 0.28);
+  position: fixed;
+  grid-column: 1;
+  width: 20%;
+  height: 100%;
+
+}
+
+.page-with-sidebar>div:nth-child(2){
+  height: 100%;
+  grid-column: 2;
+}
