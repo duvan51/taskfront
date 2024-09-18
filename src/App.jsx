@@ -27,9 +27,9 @@ function App() {
         />
 
         <Route
-          path="/:id"
+          path="/profile"
           element={
-            <div className="page-with-sidebar background h-dvh">
+            <div className="page-with-sidebar bg-bgSecondary h-dvh">
               <Slidebar />
               <div className="content ">
                 <HomeApp />
@@ -39,22 +39,9 @@ function App() {
         />
 
         <Route
-          path="/:id"
+          path="/informacion"
           element={
-            <div className="page-with-sidebar background h-dvh">
-              <Slidebar />
-              <div className="content">
-                <HomeApp />
-              </div>
-            </div>
-          }
-        />
-
-
-        <Route
-          path="/:id/informacion"
-          element={
-            <div className="page-with-sidebar background h-full">
+            <div className="page-with-sidebar bg-bgSecondary h-full">
               <Slidebar className="" />
               <div className="content px-10">
                 <Informacion />
@@ -65,9 +52,9 @@ function App() {
 
 
         <Route
-          path="/:id/createProject"
+          path="/createProject"
           element={
-            <div className="page-with-sidebar background h-dvh">
+            <div className="page-with-sidebar bg-bgSecondary h-dvh">
               <Slidebar className="" />
               <div className="content px-10">
                 <CreateProject />
@@ -77,11 +64,11 @@ function App() {
         />
         
         <Route
-          path="/:id/project/:id"
+          path="/project/:id"
           element={
-            <div className="page-with-sidebar background h-full">
+            <div className="page-with-sidebar bg-bgSecondary h-full h-auto">
               <Slidebar className="" />
-              <div className="content px-10">
+              <div className="content px-10 py-4">
                 <Project />
               </div>
             </div>

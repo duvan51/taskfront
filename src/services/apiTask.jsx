@@ -35,8 +35,9 @@ export const updateTaskOrder = async (updatedTasks) => {
 
   export const updateTaskStatus = async (id, updateStatus) => {
     try {
-      const response = await axios.put(`${URL}/${id}`, { tasks: updateStatus });
-        console.log(updateStatus)
+      const response = await axios.put(`${URL}/tasks/${id}`, { state: updateStatus });
+        console.log('esto recibo=> ', updateStatus) 
+        console.log('este es el id=> ', id) 
       return response.data;
     } catch (error) {
       throw new Error('Error actualizando el orden de las tareas');
@@ -44,8 +45,19 @@ export const updateTaskOrder = async (updatedTasks) => {
   };
 
 
+/*
+  @apitasksu= http://localhost:4000/tasks/1
 
 
-
+  ###----- 
+  PUT {{apitasksu}}
+  Content-Type: application/json
+  
+  {
+      "state": "programada"
+  }
+  
+  
+*/
 
   

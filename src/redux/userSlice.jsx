@@ -11,10 +11,10 @@ export const userSlice = createSlice({
     initialState,
     reducers:{
         setUserDataRedux: (state, action)=>{
-            console.log('Payload recibido en setUserDataRedux:', action.payload);
+           // console.log('Payload recibido en setUserDataRedux:', action.payload);
             state.id = action.payload.id;
             state.userName = action.payload.userName;
-            console.log('Estado después de la actualización:', state);
+           // console.log('Estado después de la actualización:', state);
         },
         clearUserData: (state)=>{
             state.id = null;

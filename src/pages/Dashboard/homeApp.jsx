@@ -2,33 +2,24 @@ import React,{useEffect,useState} from 'react'
 import { useParams} from 'react-router-dom';
 import { getUserById } from "../../services/apiUsers.jsx";
 
-import {useDispatch } from 'react-redux';
-import { setUserDataRedux } from '../../redux/userSlice.jsx';
+import { useSelector } from "react-redux";
 
 
 const HomeApp = () => {
-  const dispatch = useDispatch();
-  const {id} = useParams()
+
   const [userData, setUserData] = useState(null);
 
-
+  const user = useSelector((state) => state.user);
 
 
   
   useEffect(() => {
     const fetchUserData = async () => {
-      if (id ) {
+      if (user.id ) {
         try {
-          const data = await getUserById(id);
+          const data = await getUserById(user.id);
           setUserData(data);  // Guardar los datos en el estado
 
-
-          const userForRedux = {
-            id: data.id,
-            userName: data.userName || ''
-          }
-          console.log(userForRedux)
-          dispatch(setUserDataRedux(userForRedux));
         } catch (error) {
           console.error('Error fetching user data:', error);
         }
@@ -36,7 +27,7 @@ const HomeApp = () => {
     };
 
     fetchUserData();
-  }, [id, dispatch]);
+  }, [user.id]);
 
 
 

@@ -41,7 +41,7 @@ const Informacion = () => {
         <div>inormacion de tu persil de servicios sera tra</div>
       </div>
 
-      <div className="backgroundCristal flex flex-col px-10 py-5 text-amber-50 rounded-md gap-4">
+      <div className="bg-bgPrimary h-dvh color-black flex flex-col px-10 py-5 text-black rounded-md gap-4">
         <div className="flex flex-col gap-20">
 
           <div className="cardBig py-4 flex flex-col gap-8">
@@ -50,6 +50,21 @@ const Informacion = () => {
               <div>subtitle</div>
             </div>
             <div className="">
+              <div>
+              <div class="shrink-0">
+    <img class="h-16 w-16 object-cover rounded-full" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1361&q=80" alt="Current profile photo" />
+  </div>
+  <label class="block">
+    <span class="sr-only">Choose profile photo</span>
+    <input type="file" class="block w-full text-sm text-slate-500
+      file:mr-4 file:py-2 file:px-4
+      file:rounded-full file:border-0
+      file:text-sm file:font-semibold
+      file:bg-violet-50 file:text-violet-700
+      hover:file:bg-violet-100
+    "/>
+  </label>
+              </div>
               <SectionInfo 
                 titleItem={"imagen de perfil"}
                 ContenidoItem={""}

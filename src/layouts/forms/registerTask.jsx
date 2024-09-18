@@ -8,13 +8,13 @@ import { useParams } from "react-router-dom";
 
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-
+import { useNavigate } from 'react-router-dom'; 
 
 
 const RegisterUser = ({ show, handleClose }) => {
     
  
-
+  const navigate = useNavigate();
   const { id } = useParams();
   const dateCreated = new Date();
 
@@ -26,7 +26,7 @@ const RegisterUser = ({ show, handleClose }) => {
     state: "programada",
     ProyectsTasks: id,
   });
-
+ 
   
 
   const handleInputChange = (name, value) => {
@@ -40,6 +40,11 @@ const RegisterUser = ({ show, handleClose }) => {
     try {
       await createTask(formData);
       // console.log('Datos enviados correctamente', formData);
+      handleClose()
+      navigate(`/project/${id}`);
+      window.location.reload(); // Forzar el refresco de la página
+
+
     } catch (error) {
       console.error("Error al enviar los datos:", error);
     }

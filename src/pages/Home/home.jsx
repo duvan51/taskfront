@@ -14,19 +14,19 @@ const Home = () => {
           <div className="OneBanner w-full h-full content-center justify-center">
 
 
-            <div className="flex flex-col w-full h-full align-center">
+            <div className="flex flex-col w-full h-full align-center justify-center">
               <div>
-                <h1 className="text-5xl">
+                <h1 className="text-5xl text-white">
                   TaskMaster te ayuda a gestionar mejor tu tiempo con tus
                   proyectos y tu equipo
                 </h1>
               </div>
               <div>
-                <h3 className="text-2xl">Manten organizados tus proyectos</h3>
+                <h3 className="text-2xl text-white">Manten organizados tus proyectos</h3>
               </div>
             </div>
 
-            <div className="h-96">
+            <div className="h-100 w-full flex flex-col justify-center">
               <Tabs aria-label="Tabs with icons" variant="underline" className="flex gap-6 justify-center">
                 <Tabs.Item active title="Login" icon={HiUserCircle} >
                      <Login />

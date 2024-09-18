@@ -21,6 +21,42 @@ const RegisterUser = () => {
     });
   };
 
+
+  //esto es para subir imagen ------------------
+  const handleImageChange = (e) => {
+    setImagePrincipal(e.target.files[0]);
+  };
+
+  const uploadImage = async () => {
+    const formData = new FormData();
+    formData.append("file", imagePrincipal);
+    formData.append("upload_preset", "images-hoteles-backend");
+
+    try {
+      const response = await axios.post(
+        "https://api.cloudinary.com/v1_1/dlkky5xuo/image/upload",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      const imageUrl = response.data.secure_url;
+      setImageUrl(imageUrl);
+
+      return imageUrl;
+    } catch (err) {
+      console.error("Error uploading image:", err.message);
+      console.error(
+        "Detalles del error:",
+        err.response ? err.response.data : "Sin detalles de error de red"
+      );
+      throw err;
+    }
+  };
+
+  // fin de imagen  ---------------------------
  
 
   const handleSubmit =async()=>{

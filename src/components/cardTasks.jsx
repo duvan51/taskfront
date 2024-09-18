@@ -3,6 +3,7 @@ import { BsFillEyeFill } from "react-icons/bs";
 import {useSortable} from '@dnd-kit/sortable';
 import { GiMatterStates } from "react-icons/gi";
 import {CSS} from '@dnd-kit/utilities'
+import { useNavigate } from 'react-router-dom';
 
 import {updateTaskStatus} from '../services/apiTask.jsx'
 
@@ -12,8 +13,10 @@ import Modal from 'react-bootstrap/Modal';
 
 
 const cardTasks = ({Tasks}) => {
+
   const [status, setStatus] = useState(Tasks.status);
   const [show, setShow] = useState(false);
+  const navigate = useNavigate();
 
     const {
         attributes,
@@ -24,7 +27,9 @@ const cardTasks = ({Tasks}) => {
       } =useSortable({
         id: Tasks.id
       })
-     
+
+    const statesGenerales = ['programada','proceso','revision','cancelada','finalizada']
+    const filter_statesGenerales = statesGenerales.filter(x => x != Tasks.state)
 
       const style ={
         transform : CSS.Transform.toString(transform),
@@ -37,24 +42,23 @@ const cardTasks = ({Tasks}) => {
 
       const handleStatusChange = async (newStatus) => {
         try {
-          const updatedTask = await updateTaskStatus(Tasks.id, { status: newStatus });
-          setStatus(updatedTask.status);
+          const updatedTask = await updateTaskStatus(Tasks.id, newStatus );
+          setStatus(updatedTask.state);  // Actualizar el estado en el frontend
+          console.log('actuializado correctamente', updatedTask)
+
+
+          handleClose()
+          navigate(`/project/${Tasks.ProyectsTasks}`);
+          window.location.reload(); // Forzar el refresco de la página
+
         } catch (error) {
           console.error('Error actualizando el estado de la tarea:', error);
         }
       };
 
-
-      const onclick = () =>{console.log("ye yeysy yyasduas")}
-
-
-
-
-
-
  
   return (
-    <div className='w-full black p-2 rounded-md cursor-grab'
+    <div className='w-auto  p-2 rounded-md cursor-grab border-borderSecondary border-2'
         style={style}
         {...attributes} 
         {...listeners} 
@@ -85,7 +89,7 @@ const cardTasks = ({Tasks}) => {
                                       
                                          onClick={(e) => {
                                           e.stopPropagation();  // Esto detiene que el evento siga propagándose hacia DndContext
-                                          onclick();  // Llama a tu función onclick
+                                          handleShow();  // Llama a tu función onclick
                                         }}
                                 >
                                  <GiMatterStates className='hover:text-violet-600'  />
@@ -99,13 +103,17 @@ const cardTasks = ({Tasks}) => {
 
                                <Modal show={show} onHide={handleClose} animation={false}>
                               <Modal.Header closeButton>
-                                 <Modal.Title>Modal heading</Modal.Title>
+                                 <Modal.Title>Cambiar estado</Modal.Title>
                               </Modal.Header>
-                           <Modal.Body>Woohoo, you are reading this text in a modal!</Modal.Body>
+                           <Modal.Body>
+                                      
+                                      <div className='flex w-full flex-col gap-4'>
+                                       {filter_statesGenerales.map(x=> (
+                                           <Button key={x} onClick={() => handleStatusChange(`${x}`)}  className='bg-blue-700 py-2 active:bg-violet-700 focus:ring focus:bg-blue-400'>{x}</Button>
+                                       ))}
+                                      </div>
+                           </Modal.Body>
                           <Modal.Footer>
-                              <Button variant="secondary" onClick={handleClose}>
-                                   Close
-                              </Button>
                               <Button variant="primary" onClick={handleClose}>
                                    Save Changes
                               </Button>
